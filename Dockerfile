@@ -16,6 +16,7 @@ RUN apk add --no-cache \
 COPY --chown=root:root ./configs/supervisord.conf /etc
 
 RUN mkdir /app && \
+    mkdir /app/cron && \
     mkdir /app/supervisor
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
