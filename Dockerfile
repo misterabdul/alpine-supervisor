@@ -69,6 +69,7 @@ COPY --chown=root:root ./configs/php-fpm.conf /etc/php8
 COPY --chown=root:root ./configs/www.conf /etc/php8/php-fpm.d
 
 RUN mkdir /app && \
+    mkdir /app/cron && \
     mkdir /app/www && \
     chown nginx:nginx /app/www && \
     mkdir /app/supervisor && \
