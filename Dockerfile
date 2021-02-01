@@ -13,10 +13,21 @@ RUN apk add --no-cache \
     mkdir /etc/supervisor.d && \
     mkdir /run/supervisor
 
+RUN apk add --no-cache \
+    nodejs-current \
+    npm && \
+    npm -g i npm
+
 COPY --chown=root:root ./configs/supervisord.conf /etc
+
+RUN rm -rf /var/cache/apk/*
 
 RUN mkdir /app && \
     mkdir /app/cron && \
-    mkdir /app/supervisor
+    mkdir /app/supervisor && \
+    mkdir /app/nodejs && \
+    mkdir /app/npm
+
+EXPOSE 80
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
